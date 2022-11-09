@@ -26,17 +26,17 @@ public class Main {
             }
         }
         PriorityQueue<double[]> queue = new PriorityQueue<>((a,b) -> (int) (a[0] - b[0]));
-        queue.add(new double[]{0, 0, 0});
+        queue.add(new double[]{0, 0});
         while (!queue.isEmpty() && cnt > 0) {
             double[] now = queue.poll();
             int n = (int) now[1];
             if (vtd[n]) continue;
             vtd[n] = true;
             cnt--;
-            result += dist[n][(int) now[2]];
+            result += now[0];
             for (int i = 0; i < N; i++) {
                 if (vtd[i]) continue;
-                queue.add(new double[]{dist[n][i], i, n});
+                queue.add(new double[]{dist[n][i], i});
             }
         }
         System.out.printf("%.2f", result);
